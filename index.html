@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body{
+            background-image: url('https://img.freepik.com/free-vector/flat-style-clouds-blue-shades-background_1017-23284.jpg?w=1800&t=st=1655549946~exp=1655550546~hmac=4980c235aeddba72f37f798835b9209be5869947819a8259601120c8d7a3803c');
+            z-index: 1;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .weathercard {
+            background-color: rgb(24, 43, 65);
+            display: inline-block;
+            padding: 30px 30px;
+            text-align: center;
+            margin: 8% 0%;
+            line-height: 40px;
+            border-radius: 3px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 4;
+            color: white;
+        }
+
+        #weathericon {
+            zoom: 5;
+            margin: 15px 0px;
+        }
+
+        .location {
+            font-weight: 700;
+        }
+
+        #date {
+            font-weight: 100;
+            font-size: small;
+            opacity: 0.5;
+            
+        }
+
+        .tempmin_max {
+            font-weight: 100;
+            opacity: 0.5;
+        }
+        
+    </style>
+    <title>Weather Forecast</title>
+</head>
+
+<body>
+    <div class="weathercard">
+         <div id="weathericon"><i class="fa-solid fa-sun" style="color: rgba(255, 221, 0, 0.957);"></i></div>
+
+        <hr style="margin-bottom: 20px;">    
+        <div class="lower">       
+            <div class="info">
+                <h2 class="location"><i class="fa-solid fa-street-view"></i> CITY, COUN</h2>
+                <p id="date">FRI | JUNE 10 | 05:36 PM</p>
+                <h1 id="temperature">TEMPERATURE °C</h1>
+                <h3 class="tempmin_max">Min. MIN_TEMP °C | Max. MAX_TEMP °C</h3>
+            </div>
+        </div>
+    </div>
+    <script>
+        var currentDate = document.getElementById("date");
+        var weathercondition = document.getElementById("weathericon");
+
+        var getcurrentdate = () => {
+            var months = ["Jan", "Feb", "March", "April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+            var tempStatus = "TEMP_STATUS";
+
+            if(tempStatus == "Sunny"){
+                weathercondition.innerHTML = '<i class="fa-solid fa-sun" style="color: rgba(255, 221, 0, 0.957);">'; 
+            }else if(tempStatus == "Clouds"){
+                weathercondition.innerHTML = '<i class="fa-regular fa-cloud"></i>';
+            }else if(tempStatus == "Rainy"){
+                weathercondition.innerHTML = '<i class="fa-solid fa-cloud-rain" style="color: rgb(118, 147, 164);"></i>';
+            }else{
+                weathercondition.innerHTML = '<i class="fa-solid fa-cloud"></i>';
+            }
+
+            let now = new Date();
+            var day = days[now.getDay()];
+            var month = months[now.getMonth()];
+            var date = now.getDate();
+            var year = now.getFullYear();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            let ampm = "AM";
+
+            if(minutes<10){
+                minutes = "0"+minutes;
+            }
+
+            if (hours >= 12) {
+                hour = hours - 12;
+                ampm = "PM";
+            } else {
+                ampm = "AM";
+            }
+
+            return day.toUpperCase() + " | " + month.toUpperCase() + " " + date + ", " + year + " | " + hour + ":" + minutes + " " + ampm;
+        }
+
+        currentDate.innerHTML = getcurrentdate();
+    </script>
+</body>
+
+</html>
