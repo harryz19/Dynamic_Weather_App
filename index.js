@@ -19,7 +19,7 @@ var replaceval = (temp,newdata) =>{
 
 app.get('/',(req,res) => {
     if(req.url == "/"){
-        requests('https://api.openweathermap.org/data/2.5/weather?q=surat&units=metric&appid=d7a22859555984be77012185463fb484')
+        requests('https://api.openweathermap.org/data/2.5/weather?q=surat&units=metric&appid={API-KEY}')
         .on('data', function (chunk) {
             var objdata = JSON.parse(chunk);
             var arraydata = [objdata];
